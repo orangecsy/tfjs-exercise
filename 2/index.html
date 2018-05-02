@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <style>
+      #content {
+        padding: 15px;
+      }
+      .prediction-canvas{
+        width: 100px;
+      }
+      .pred {
+        font-size: 20px;
+        line-height: 25px;
+        width: 100px;
+      }
+      .pred-correct {
+        background-color: #00cf00;
+      }
+      .pred-incorrect {
+        background-color: red;
+      }
+      .pred-container {
+        display: inline-block;
+        width: 100px;
+        margin: 10px;
+      }
+      .chart {
+        display: inline-block;
+        height: 500px;
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <h3>TensorFlow.js: Train MNIST with the Layers API</h3>
+      <div id="status">Loading data...</div>
+      <div id="lossChart" class="chart"></div>
+      <div id="accuracyChart" class="chart"></div>
+      <div id="images"></div>
+    </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
