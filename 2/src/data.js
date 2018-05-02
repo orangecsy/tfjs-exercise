@@ -7,8 +7,8 @@ const NUM_DATASET_ELEMENTS = 65000;//总样本数
 const NUM_TRAIN_ELEMENTS = 55000;//训练样本数
 const NUM_TEST_ELEMENTS = NUM_DATASET_ELEMENTS - NUM_TRAIN_ELEMENTS;//测试样本数
 
-const MNIST_IMAGES_SPRITE_PATH = './src/mnist_images.png';//mnist图像
-const MNIST_LABELS_PATH = './src/mnist_labels_uint8';//mnist图像对应的类别
+const MNIST_IMAGES_SPRITE_PATH = './mnist_images.png';//mnist图像
+const MNIST_LABELS_PATH = './mnist_labels_uint8';//mnist图像对应的类别
 
 export class MnistData {
   constructor() {
