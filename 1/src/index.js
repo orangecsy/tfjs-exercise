@@ -1,4 +1,3 @@
-
 import * as tf from '@tensorflow/tfjs';
 var echarts = require('echarts');
 
@@ -9,7 +8,7 @@ const d = tf.variable(tf.scalar(Math.random()));
 
 function predict(x) {
   return tf.tidy(() => {
-    return a.mul(x.pow(tf.scalar(3, 'int32')))
+    return a.mul(x.pow(tf.scalar(3, 'int32'))) 
       .add(b.mul(x.square()))
       .add(c.mul(x))
       .add(d);
@@ -43,7 +42,7 @@ function generateData(numPoints, coeff, sigma = 0.04) {
       tf.scalar(coeff.c),
       tf.scalar(coeff.d)
     ];
-
+  
     const xs = tf.randomUniform([numPoints], -1, 1);
     const ys = a.mul(xs.pow(tf.scalar(3, 'int32')))
       .add(b.mul(xs.square()))
@@ -57,7 +56,7 @@ function generateData(numPoints, coeff, sigma = 0.04) {
     const ysNormalized = ys.sub(ymin).div(yrange);
 
     return {
-      xs, 
+      xs,
       ys: ysNormalized
     };
   })
@@ -67,7 +66,7 @@ async function plotData(xs, ys, preds) {
   const xvals = await xs.data();
   const yvals = await ys.data();
   const predVals = await preds.data();
-
+  
   const valuesBefore = Array.from(xvals).map((x, i) => {
     return [xvals[i], yvals[i]];
   });
@@ -102,30 +101,16 @@ async function plotData(xs, ys, preds) {
   });
 }
 
-function renderCoefficients(container, coeff) {
-  document.querySelector(container).innerHTML =
-      `<span>a=${coeff.a.toFixed(3)}, b=${coeff.b.toFixed(3)}, c=${
-          coeff.c.toFixed(3)},  d=${coeff.d.toFixed(3)}</span>`;
-}
-
 async function learnCoefficients() {
   const trueCoefficients = {a: -0.8, b: -0.2, c: 0.9, d: 0.5};
-  renderCoefficients('#data', trueCoefficients);
   // 生成有误差的训练数据
   const trainingData = generateData(100, trueCoefficients);
-  
+  // 训练模型
   await train(trainingData.xs, trainingData.ys, numIterations);
-  renderCoefficients('#trained', {
-    a: a.dataSync()[0],
-    b: b.dataSync()[0],
-    c: c.dataSync()[0],
-    d: d.dataSync()[0],
-  });
-
+  // 预测数据
   const predictionsAfter = predict(trainingData.xs);
   // 绘制散点图及拟合曲线
   await plotData(trainingData.xs, trainingData.ys, predictionsAfter);
-
   predictionsAfter.dispose();
 }
 
