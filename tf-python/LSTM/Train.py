@@ -1,3 +1,7 @@
+'''
+利用LSTM预测股票数据
+训练部分
+'''
 
 import os
 import tensorflow as tf
