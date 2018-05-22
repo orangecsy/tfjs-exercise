@@ -1,0 +1,12 @@
+{
+  "name": "tfjs-rnn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs": "0.10.0",
+    "echarts": "^4.1.0"
+  }
+}
