@@ -225,11 +225,6 @@ class RNN {
       trainAccuracyArr.push([i, trainAccuracy]);
       valAccuracyArr.push([i, valAccuracy]);
       examplesPerSecArr.push([i, examplesPerSec]);
-      // trainLossValues.push({'epoch': i, 'loss': trainLoss});
-      // valLossValues.push({'epoch': i, 'loss': valLoss});
-      // trainAccuracyValues.push({'epoch': i, 'accuracy': trainAccuracy});
-      // valAccuracyValues.push({'epoch': i, 'accuracy': valAccuracy});
-      // examplesPerSecValues.push({'epoch': i, 'examples/s': examplesPerSec});
 
       // 没有展示的数据或展示的数据量不够
       if (this.testXsForDisplay == null || this.testXsForDisplay.shape[0] !== numTestExamples) {
@@ -325,6 +320,10 @@ class RNN {
       title: {
         text: 'Examples Per Second'
       },
+      // y轴向右12%，避免遮挡
+      grid: {
+        left: '12%'
+      },
       xAxis: {
         type: 'value'
       },
@@ -368,6 +367,6 @@ async function runRNN() {
     await demo.train(trainIterations, batchSize, numTestExamples);
   });
 }
- 
+
 
 runRNN();
